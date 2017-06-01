@@ -26,11 +26,13 @@ void unRotAnyChars(char arr[], int size, int rot);
 
 void rotByWord(char master[], int sizeM, char key[], int sizeK);
 
+void unRotByWord(char master[], int sizeM, char key[], int sizeK);
+
 // main function
 int main()
 {
 
-	printf("******* ROT 13 *******\n");
+	printf("\n******* ROT 13 *******\n");
 
 	// test character 'w'
 	char c = 'w';
@@ -105,8 +107,9 @@ int main()
 	{
 		printf("%c", word[n]);
 	}
-	printf("\n");
+	printf("\n\n");
 
+	printf("********* ROT BY WORD ***********\n\n");
 	// rot by word tests
 	char master[] = "jason loves programming";
 	char key[] = "goat";
@@ -124,6 +127,12 @@ int main()
 		printf("%c", master[n]);
 	}
 	printf("\n");
+	unRotByWord(master, sizeM, key, sizeK);	
+	for (int n = 0; n < sizeM; n++)
+	{
+		printf("%c", master[n]);
+	}
+	printf("\n\n");
 }
 
 // rot13
@@ -205,5 +214,15 @@ void rotByWord(char master[], int sizeM, char key[], int sizeK)
 // un rotate by word
 void unRotByWord(char master[], int sizeM, char key[], int sizeK)
 {
-	// stub
+	int count = 0;
+	for (int i = 0; i < sizeM; i++)
+	{
+		count = (count >= sizeK) ? 0 : count;
+		char temp;
+		master[i] = (master[i] >= 'A' && master[i] <= 'Z') ?
+			temp = (char) (((master[i] - 'Z') - key[count])% 26) + 'Z' :
+				(temp = (master[i] >= 'a' && master[i] <= 'z') ? 
+					temp = (char) (((master[i] - 'z') - key[count]) % 26) + 'z' : master[i]);
+		count++;
+	}
 }
