@@ -29,6 +29,32 @@ public class ArraySorting {
 		return arr2;
 	}
 	
+	// insert and then sort
+	public static int[] insertSort(int[] arr, int ele, int newNum) {
+		int[] arr2 = new int[arr.length+1];
+		for (int i = 0; i < arr2.length; i++) {
+			if (i < ele) {
+				arr2[i] = arr[i];
+			}
+			else if (i == ele) {
+				arr2[i] = newNum;
+			}
+			else {
+				arr2[i] = arr[i-1];
+			}
+		}
+		for (int i = 0; i < arr2.length; i++) {
+			for (int j = 0; j < arr2.length-1; j++) {
+				if (arr2[j] > arr2[j+1]) {
+					int temp = arr2[j];
+					arr2[j] = arr2[j+1];
+					arr2[j+1] = temp;
+				}
+			}
+		}
+		return arr2;
+	}
+	
 	// sort string array
 	public static String[] bubbleSortString(String[] arr) {
 		for (int i = 0; i < arr.length; i++) {
@@ -78,7 +104,7 @@ public class ArraySorting {
 		}
 		System.out.println();
 		int[] nums2 = new int[nums.length+1];
-		nums2 = insert(nums, 5, 999);
+		nums2 = insertSort(nums, 5, 999);
 		for (int i = 0; i < nums2.length; i++) {
 			System.out.printf("%d ", nums2[i]);
 		}
